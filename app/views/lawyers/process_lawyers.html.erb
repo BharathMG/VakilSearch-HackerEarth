@@ -56,7 +56,6 @@
   <thead>
     <tr>
       <th>Lawyer Name </th>
-      <th>Service code</th>
       <th>Service name</th>
       <th>Charges</th>
       <th>Ratings</th>
@@ -71,7 +70,6 @@
     <% @lawyer_services.each do |lawyer_service| %>
       <tr>
         <td><%= lawyer_service[0][:name] %></td>
-        <td><%= lawyer_service[0][:service_code] %></td>
         <td><%= lawyer_service[0][:service_name] %></td>
         <td><%= lawyer_service[0][:charges] %></td>
         <td><%= lawyer_service[0][:ratings] %></td>
