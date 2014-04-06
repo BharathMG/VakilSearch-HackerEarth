@@ -1,0 +1,33 @@
+<h1>Listing lawyer_services</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Service code</th>
+      <th>Service name</th>
+      <th>Charges</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @lawyer_services.each do |lawyer_service| %>
+      <tr>
+        <td><%= lawyer_service.code %></td>
+        <td><%= lawyer_service.service_code %></td>
+        <td><%= lawyer_service.service_name %></td>
+        <td><%= lawyer_service.charges %></td>
+        <td><%= link_to 'Show', lawyer_service %></td>
+        <td><%= link_to 'Edit', edit_lawyer_service_path(lawyer_service) %></td>
+        <td><%= link_to 'Destroy', lawyer_service, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Lawyer service', new_lawyer_service_path %>

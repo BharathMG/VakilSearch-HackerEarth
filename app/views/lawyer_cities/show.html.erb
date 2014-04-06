@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @lawyer_city.code %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @lawyer_city.name %>
+</p>
+
+<p>
+  <strong>Experience:</strong>
+  <%= @lawyer_city.experience %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @lawyer_city.city %>
+</p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @lawyer_city.rating %>
+</p>
+
+<%= link_to 'Edit', edit_lawyer_city_path(@lawyer_city) %> |
+<%= link_to 'Back', lawyer_cities_path %>
