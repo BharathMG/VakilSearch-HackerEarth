@@ -1,12 +1,13 @@
 require 'csv'
 class LawyersController < ApplicationController
+    include LawyerHelperMethods
+
 	def index
 
 		@lawyer_cities = LawyerCity.all
 
 		if(@lawyer_cities.empty?)
-		csv_text = File.read('Lawyers_City_List.csv')
-	    csv = CSV.parse(csv_text, :headers => true)
+		csv = process_csv('Lawyer_Cities_List.csv')
 	    csv.each do |row|
 	      LawyerCity.create!(row.to_hash)
 	    end
@@ -15,8 +16,7 @@ class LawyersController < ApplicationController
 		@lawyer_services = LawyerService.all
 
 		if(@lawyer_services.empty?)
-	    csv_text = File.read('Lawyer_Service_List.csv')
-	    csv = CSV.parse(csv_text, :headers => true)
+	    csv_text = process_csv('Lawyer_Service_List.csv')
 	    csv.each do |row|
 	      code = row["code"]
 	      unique_id = LawyerCity.find_by_code(code)
@@ -33,25 +33,8 @@ class LawyersController < ApplicationController
 
 
 	def process_lawyers
-		# where("name LIKE ? AND city = ?", "#{params[:name]}%", params[:cityId])
-		# @lawyer_services = LawyerService.all.where("service_name LIKE ?","%#{params[:service]}%")
     	@lawyer_cities = LawyerCity.all.where("city LIKE ?","%#{params[:city]}%")
-
-
-    	@results = @lawyer_cities
-    	@lawyer_services = []
-    	@results.each do |result|
-    		@finals = result.lawyer_services.where("service_name LIKE ?","%#{params[:service]}%")
-    		if(!@finals.empty?)
-    		data = []
-			@finals.each do |row|
-			 data << {:city => result.city, :ratings => result.rating,:service_code => row[:service_code], :service_name => row[:service_name], :charges => row[:charges], :name => result.name}
-			end
-    		
-    		@lawyer_services << data
-    		puts @lawyer_services.inspect
-    		end
-    	end
+    	@lawyer_services = process_lawyer_services(@lawyer_cities)
 
     	if @lawyer_services.empty?
     		flash[:error] = "No lawyers found"
@@ -61,5 +44,12 @@ class LawyersController < ApplicationController
     	# puts @lawyer_cities
 
     	
+	end
+
+	private
+	def process_csv(file)
+		csv_text = File.read(file)
+	    csv = CSV.parse(csv_text, :headers => true)
+	    csv
 	end
 end

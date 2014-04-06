@@ -1,9 +1,8 @@
-<h1>Listing lawyer_cities</h1>
+<h1>Lawyers list</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>Code</th>
       <th>Name</th>
       <th>Experience</th>
       <th>City</th>
@@ -17,14 +16,11 @@
   <tbody>
     <% @lawyer_cities.each do |lawyer_city| %>
       <tr>
-        <td><%= lawyer_city.code %></td>
         <td><%= lawyer_city.name %></td>
         <td><%= lawyer_city.experience %></td>
         <td><%= lawyer_city.city %></td>
         <td><%= lawyer_city.rating %></td>
         <td><%= link_to 'Show', lawyer_city %></td>
-        <td><%= link_to 'Edit', edit_lawyer_city_path(lawyer_city) %></td>
-        <td><%= link_to 'Destroy', lawyer_city, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
