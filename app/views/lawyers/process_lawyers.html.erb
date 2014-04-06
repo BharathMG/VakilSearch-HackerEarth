@@ -70,7 +70,7 @@
     <% @lawyers.each do |lawyer| %>
       <tr>
         <td><%= lawyer.name %></td>
-        <td><%= params[:service] %></td>
+        <td><%= lawyer.lawyer_services.find_by_service_name(params[:service]).service_name %></td>
         <td><%= lawyer.lawyer_services.find_by_service_name(params[:service]).charges %></td>
         <td><%= lawyer.rating %></td>
         <td><%= lawyer.city %></td>

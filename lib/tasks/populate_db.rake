@@ -1,6 +1,6 @@
 require 'csv'
 namespace :populate_db do
-  desc "TODO"
+  desc "Populate lawyers cities DB"
   task city: :environment do
   	csv = process_csv('Lawyers_City_List.csv')
     csv.each do |row|
@@ -8,7 +8,7 @@ namespace :populate_db do
     end
   end
 
-  desc "TODO"
+  desc "Populate lawyers services DB"
   task service: :environment do
   	csv = process_csv('Lawyer_Service_List.csv')
     csv.each do |row|
