@@ -1,6 +1,5 @@
 require 'csv'
 class LawyersController < ApplicationController
-    include LawyerHelperMethods
 
 	def index
 
@@ -33,17 +32,14 @@ class LawyersController < ApplicationController
 
 
 	def process_lawyers
-    	@lawyer_cities = LawyerCity.all.where("city LIKE ?","%#{params[:city]}%")
-    	@lawyer_services = process_lawyer_services(@lawyer_cities)
+    	@lawyers = LawyerCity.where("city LIKE ?","%#{params[:city]}%").joins(:lawyer_services).where("lawyer_services.service_name LIKE ?","%#{params[:service]}%").all
 
-    	if @lawyer_services.empty?
+    	if @lawyers.empty?
     		flash[:error] = "No lawyers found"
     	else
     		flash[:error] = nil
     	end
-    	# puts @lawyer_cities
-
-    	
+    
 	end
 
 	private

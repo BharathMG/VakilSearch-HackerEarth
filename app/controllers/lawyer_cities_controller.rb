@@ -1,5 +1,4 @@
 class LawyerCitiesController < ApplicationController
-  include LawyerHelperMethods
   before_action :set_lawyer_city, only: [:show, :edit, :update, :destroy]
 
   def index
