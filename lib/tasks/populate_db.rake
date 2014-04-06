@@ -24,6 +24,7 @@ end
 
 def process_csv(file)
 		csv_text = File.read(file)
-	    csv = CSV.parse(csv_text, :headers => true)
+	    csv = CSV.parse(csv_text, :headers => true, :header_converters=> lambda {|f| f.strip},
+   :converters=> lambda {|f| f ? f.strip : nil})
 	    csv
 	end
