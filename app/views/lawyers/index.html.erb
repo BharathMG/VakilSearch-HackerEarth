@@ -14,10 +14,7 @@
     <![endif]-->
 
     <%= stylesheet_link_tag "application", :media => "all" %>
-    <link href="/assets/bootstrap-tag-cloud.css" rel="stylesheet">
-    <script src="/assets/bootstrap-tag-cloud.js"></script>
-
-
+  
     <!-- For third-generation iPad with high-resolution Retina display: -->
     <!-- Size should be 144 x 144 pixels -->
     <%= favicon_link_tag 'apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144' %>
@@ -65,7 +62,7 @@
    
        <%= select_tag 'city', options_for_select(@lawyer_cities) %>
       
-          <%= select_tag 'service', options_for_select(@lawyer_services), :multiple => true%> 
+          <%= select_tag 'service', options_for_select(@lawyer_services), :multiple => true%> <br> 
        
       <%= submit_tag("Search" , class: 'btn btn-default') %>
     <% end %>
