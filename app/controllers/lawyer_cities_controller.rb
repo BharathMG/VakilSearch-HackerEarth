@@ -4,14 +4,11 @@ class LawyerCitiesController < ApplicationController
 
   def index
     @lawyer_cities = LawyerCity.all
-    @lawyer_services = process_lawyer_services(@lawyer_cities)
-
-    if @lawyer_services.empty?
-      flash[:error] = "No lawyers found"
-    else
-      flash[:error] = nil
+    @services_count = []
+    @lawyer_cities.each do |lawyer|
+      total_services = lawyer.lawyer_services.count
+      @services_count << total_services
     end
-
   end
 
   

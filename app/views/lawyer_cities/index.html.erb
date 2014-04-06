@@ -1,4 +1,10 @@
-<h1>Lawyers list</h1>
+<div class="navbar navbar-fluid-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="brand" href="#">Lawyers List</a>
+        </div>
+      </div>
+    </div>
 
 <table class="table">
   <thead>
@@ -7,6 +13,7 @@
       <th>Experience</th>
       <th>City</th>
       <th>Rating</th>
+      <th>Total services</th>
       <th></th>
       <th></th>
       <th></th>
@@ -17,9 +24,10 @@
     <% @lawyer_cities.each do |lawyer_city| %>
       <tr>
         <td><%= lawyer_city.name %></td>
-        <td><%= lawyer_city.experience %></td>
+        <td><%= pluralize(lawyer_city.experience , 'year')%></td>
         <td><%= lawyer_city.city %></td>
         <td><%= lawyer_city.rating %></td>
+        <td><%= @services_count[@lawyer_cities.index(lawyer_city)] %></td>
         <td><%= link_to 'Show', lawyer_city %></td>
       </tr>
     <% end %>
