@@ -54,8 +54,8 @@
 
     <%= form_for 'lawyers', url: {action: "process_lawyers"}, html:{style:"width:400px; margin-right:auto; margin-left:auto;"} do %>
    
-       <%= select_tag 'city', options_for_select(@lawyer_cities.collect{ |u| [u.city, u.city] }) %>
-       <%= select_tag 'service', options_for_select(@lawyer_services.collect{ |u| [u.service_name, u.service_name] }) %> <br>
+       <%= select_tag 'city', options_for_select(@lawyer_cities.uniq.pluck(:city)) %>
+       <%= select_tag 'service', options_for_select(@lawyer_services.uniq.pluck(:service_name)) %> <br>
       <%= submit_tag("Search" , class: 'btn btn-default') %>
     <% end %>
 

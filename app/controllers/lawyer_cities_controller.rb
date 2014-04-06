@@ -2,16 +2,12 @@ class LawyerCitiesController < ApplicationController
   before_action :set_lawyer_city, only: [:show, :edit, :update, :destroy]
 
   def index
-    @lawyer_cities = LawyerCity.all
+    @lawyer_cities = LawyerCity.all.uniq
     @services_count = []
     @lawyer_cities.each do |lawyer|
       total_services = lawyer.lawyer_services.count
       @services_count << total_services
     end
-  end
-
-  
-  def show
   end
 
   private
